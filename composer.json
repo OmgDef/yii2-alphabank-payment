@@ -1,0 +1,21 @@
+{
+    "name": "omgdef/yii2-alphabank-payment",
+    "description": "Alphabank payment component",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "BSD-4-Clause",
+    "authors": [
+        {
+            "name": "OmgDef",
+            "email": "omgdef@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "omgdef\\payment\\alpabank\\": ""
+        }
+    }
+}
