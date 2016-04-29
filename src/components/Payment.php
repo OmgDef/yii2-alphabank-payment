@@ -44,7 +44,7 @@ class Payment extends Component
             'userName' => $this->login,
             'password' => $this->password,
             'orderNumber' => urlencode($id),
-            'amount' => urlencode($amount),
+            'amount' => $amount * 100,
             'returnUrl' => $returnUrl,
         ];
 
