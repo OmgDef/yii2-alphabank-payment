@@ -14,8 +14,8 @@
         "yiisoft/yii2": "*"
     },
     "autoload": {
-        "psr-4": {
-            "omgdef\\payment\\alpabank\\": ""
-        }
+      "psr-4": {
+        "omgdef\\payment\\alphabank\\": "src"
+      }
     }
 }
