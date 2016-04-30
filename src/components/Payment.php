@@ -30,7 +30,7 @@ class Payment extends Component
      */
     public $twoStage = false;
 
-    protected $_errors;
+    protected $_errors = [];
     protected $_remoteOrderID;
     protected $_bankFormUrl;
 
@@ -145,6 +145,14 @@ class Payment extends Component
         return $response;
     }
 
+    /**
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->_errors;
+    }
+    
     /**
      * @param $response
      * @return bool
