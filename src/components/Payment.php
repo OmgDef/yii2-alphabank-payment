@@ -25,6 +25,10 @@ class Payment extends Component
      * @var integer number of the request attempts
      */
     public $retryCount = 5;
+    /**
+     * @var boolean use two-stage payment
+     */
+    public $twoStage = false;
 
     protected $_errors;
     protected $_remoteOrderID;
@@ -49,7 +53,7 @@ class Payment extends Component
         ];
 
         if (!is_null($failUrl)) $data['failUrl'] = $failUrl;
-        $response = $this->request('register.do', $data);
+        $response = $this->request($this->twoStage ? 'registerPreAuth.do' : 'register.do', $data);
 
         if (!$this->addError($response) && isset($response['orderId']) && isset($response['formUrl'])) {
             $this->_remoteOrderID = $response['orderId'];
@@ -58,6 +62,22 @@ class Payment extends Component
         }
 
         return false;
+    }
+
+    /**
+     * Inquiry of completion of payment of the order.
+     * @param $remoteOrderID
+     * @param $amount
+     * @return bool
+     */
+    public function deposit($remoteOrderID, $amount = 0)
+    {
+        return !$this->addError($this->request('deposit.do', [
+            'userName' => $this->login,
+            'password' => $this->password,
+            'orderId' => $remoteOrderID,
+            'amount' => $amount * 100,
+        ]));
     }
 
     /**
